@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity  implements NotesData.NotesD
         @Override
         public void onClick(View view) {
             Log.d("saveClick Listener", "add clicked");
-            makeData();
+            //makeData();
             //writeDataFile();
             NoteJSONSerializer noteJSONSerializer = new NoteJSONSerializer( MainActivity.this, "notes.json" );
             try {
