@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
 
     private static int EDITOR_REQUEST = 1;
+    private static String LOGID = "MainActivity";
 
     private static int NAME_ID = View.generateViewId();
     private static int DATE_ID = View.generateViewId();
@@ -67,6 +68,20 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
                 NotesData.getInstance(null).refreshNotes();
             }
         };
+
+        private View.OnClickListener saveClickedListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("NoteFragment", "delete clicked");
+                Log.d("saveClick Listener", "add clicked");
+                NoteJSONSerializer noteJSONSerializer = new NoteJSONSerializer( mContext, "notes.json" );
+                try {
+                    noteJSONSerializer.saveNotes (NotesData.getInstance(mContext).getNoteList());
+                }  catch (Exception e) {
+                    Log.d(LOGID, e.toString());
+                }
+            }
+        };
     }
 
     private Context mContext;
@@ -107,11 +122,20 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         Button deleteButton = new Button(mContext);
         deleteButton.setText("Delete");
 
+        Button saveButton = new Button(mContext);
+        saveButton.setText("Save");
+
+        LinearLayout buttonLL =  new  LinearLayout(mContext);
+        buttonLL.setOrientation(LinearLayout.HORIZONTAL);
+        buttonLL.setLayoutParams(linearLayout.getLayoutParams());
+        buttonLL.addView(editButton);
+        buttonLL.addView(deleteButton);
+        buttonLL.addView(saveButton);
+
         linearLayout.addView(nameView);
         linearLayout.addView(dateView);
         linearLayout.addView(descView);
-        linearLayout.addView(editButton);
-        linearLayout.addView(deleteButton);
+        linearLayout.addView(buttonLL);
 
         ViewHolder vh = new ViewHolder(linearLayout);
         editButton.setOnClickListener(vh.editClickedListener);

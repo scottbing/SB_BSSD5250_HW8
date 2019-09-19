@@ -20,9 +20,9 @@ import org.w3c.dom.Text;
 
 public class NoteEditorDialog extends DialogFragment {
 
-    public static final String EXTRA_NAME = "com.example.sb_bssd5250_hw7a";
-    public static final String EXTRA_DATE = "com.example.sb_bssd5250_hw7b";
-    public static final String EXTRA_DESC = "com.example.sb_bssd5250_hw7c";
+    public static final String EXTRA_NAME = "com.example.sb_bssd5250_hw8a";
+    public static final String EXTRA_DATE = "com.example.sb_bssd5250_hw8b";
+    public static final String EXTRA_DESC = "com.example.sb_bssd5250_hw8c";
 
     private EditText nameText;
     private EditText dateText;
